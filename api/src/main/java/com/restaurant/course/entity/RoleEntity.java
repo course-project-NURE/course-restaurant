@@ -19,7 +19,8 @@ public class RoleEntity {
     private Integer id;
 
     @Column(name = "title", nullable = false)
-    private String title;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
     @OneToMany(mappedBy = "role")
     private List<LoginInfo> loginInfos;
