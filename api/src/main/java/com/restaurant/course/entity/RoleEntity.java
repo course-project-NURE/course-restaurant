@@ -20,8 +20,12 @@ public class RoleEntity {
 
     @Column(name = "title", nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private Role role;
+    private Role title;
 
     @OneToMany(mappedBy = "role")
     private List<LoginInfo> loginInfos;
+
+    public RoleEntity(Role title) {
+        this.title = title;
+    }
 }
