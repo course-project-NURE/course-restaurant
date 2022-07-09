@@ -19,20 +19,29 @@ public class SaveCustomer {
     private String surname;
     private String lastname;
     private String phone;
-    private Integer salary;
-    private Role role;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SaveCustomer that = (SaveCustomer) o;
-        return getEmail().equals(that.getEmail()) && getPassword().equals(that.getPassword()) && getName().equals(that.getName()) && getSurname().equals(that.getSurname()) && getLastname().equals(that.getLastname()) && getPhone().equals(that.getPhone()) && getSalary().equals(that.getSalary()) && getRole() == that.getRole();
+        return getEmail().equals(that.getEmail()) &&
+                getPassword().equals(that.getPassword()) &&
+                getName().equals(that.getName()) &&
+                getSurname().equals(that.getSurname()) &&
+                getLastname().equals(that.getLastname()) &&
+                getPhone().equals(that.getPhone());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmail(), getPassword(), getName(), getSurname(), getLastname(), getPhone(), getSalary(), getRole());
+        return Objects.hash(
+                getEmail(),
+                getPassword(),
+                getName(),
+                getSurname(),
+                getLastname(),
+                getPhone());
     }
 
     public Customer toCustomer(){

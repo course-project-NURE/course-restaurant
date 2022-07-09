@@ -18,7 +18,6 @@ public class ResponseCustomer {
     private String surname;
     private String lastname;
     private String phone;
-    private Integer salary;
     private Role role;
 
     public ResponseCustomer(Customer customer){this.setFromCustomer(customer);}
@@ -28,12 +27,25 @@ public class ResponseCustomer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResponseCustomer that = (ResponseCustomer) o;
-        return getId().equals(that.getId()) && getEmail().equals(that.getEmail()) && getName().equals(that.getName()) && getSurname().equals(that.getSurname()) && getLastname().equals(that.getLastname()) && getPhone().equals(that.getPhone()) && getSalary().equals(that.getSalary()) && getRole() == that.getRole();
+        return getId().equals(that.getId()) &&
+                getEmail().equals(that.getEmail()) &&
+                getName().equals(that.getName()) &&
+                getSurname().equals(that.getSurname()) &&
+                getLastname().equals(that.getLastname()) &&
+                getPhone().equals(that.getPhone()) &&
+                getRole() == that.getRole();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getEmail(), getName(), getSurname(), getLastname(), getPhone(), getSalary(), getRole());
+        return Objects.hash(
+                getId(),
+                getEmail(),
+                getName(),
+                getSurname(),
+                getLastname(),
+                getPhone(),
+                getRole());
     }
 
     public void setFromCustomer(Customer customer){

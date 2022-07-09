@@ -42,8 +42,15 @@ public class ResponseStaff {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),
-                getEmail(), getName(), getSurname(), getLastname(), getPhone(), getSalary(), getRole());
+        return Objects.hash(
+                getId(),
+                getEmail(),
+                getName(),
+                getSurname(),
+                getLastname(),
+                getPhone(),
+                getSalary(),
+                getRole());
     }
 
 
