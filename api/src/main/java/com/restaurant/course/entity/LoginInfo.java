@@ -33,4 +33,9 @@ public class LoginInfo {
 
     @OneToMany(mappedBy = "loginInfo")
     private List<Staff> staff;
+
+    public LoginInfo(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }

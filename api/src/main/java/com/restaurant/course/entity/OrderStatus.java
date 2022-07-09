@@ -17,6 +17,7 @@ public class OrderStatus {
     private Integer id;
 
     @Column(name = "title", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private Status title;
 
     @OneToMany(mappedBy = "orderStatus")
