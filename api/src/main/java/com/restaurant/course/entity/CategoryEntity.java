@@ -9,17 +9,17 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "order_status")
-public class OrderStatus {
+@Table(name = "category")
+public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_order_status", nullable = false, columnDefinition = "tinyint")
+    @Column(name = "id_category", nullable = false)
     private Integer id;
 
     @Column(name = "title", nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private Status title;
+    private Category title;
 
-    @OneToMany(mappedBy = "orderStatus")
-    private List<Order> orders;
+    @OneToMany(mappedBy = "category")
+    private List<MenuItem> menuItems;
 }

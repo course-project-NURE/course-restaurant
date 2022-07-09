@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@Transactional
 @Repository
 public interface StaffRepository extends JpaRepository<Staff, Integer> {
     @Query("Select s from Staff s join LoginInfo l on s.loginInfo.id = l.id where l.email = :email")
     Optional<Staff> findByEmail(@Param("email") String email);
 
+    @Transactional
     @Modifying
     @Query("Delete from Staff s where s.loginInfo.id = (Select l.id from LoginInfo l where l.email = :email)")
     void deleteByEmail(@Param("email") String email);

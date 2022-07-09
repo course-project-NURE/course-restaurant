@@ -26,7 +26,7 @@ public class MenuItem {
     private String description;
     @ManyToOne
     @JoinColumn(name = "fk_category")
-    private Category category;
+    private CategoryEntity category;
 
     @OneToMany(mappedBy = "menuItem")
     private Set<Basket> baskets;

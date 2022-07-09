@@ -38,7 +38,15 @@ public class SaveStaff {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmail(), getPassword(), getName(), getSurname(), getLastname(), getPhone(), getSalary(), getRole());
+        return Objects.hash(
+                getEmail(),
+                getPassword(),
+                getName(),
+                getSurname(),
+                getLastname(),
+                getPhone(),
+                getSalary(),
+                getRole());
     }
 
     public Staff toStaff(){

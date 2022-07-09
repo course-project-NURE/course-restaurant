@@ -74,9 +74,7 @@ public class StaffService {
     public ResponseStaff saveStaff(SaveStaff saveStaff){
         Staff staff = saveStaff.toStaff();
 
-        LoginInfo loginInfo = new LoginInfo();
-        loginInfo.setEmail(saveStaff.getEmail());
-        loginInfo.setPassword(saveStaff.getPassword());
+        LoginInfo loginInfo = new LoginInfo(saveStaff.getEmail(),saveStaff.getPassword());
 
         RoleEntity role = roleRepository.findByTitle(saveStaff.getRole()).orElseThrow(
                 () -> RoleException.roleNotFoundByTitle(saveStaff.getRole().name())
