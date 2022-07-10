@@ -40,8 +40,7 @@ public class StaffService {
 
 
     public ResponseStaff getStaffById(Integer id){
-        Optional<Staff> notNull = staffRepository.findById(id);
-        Staff staff = notNull.orElseThrow(() ->
+        Staff staff = staffRepository.findById(id).orElseThrow(() ->
                 StaffException.staffNotFoundById(id)
         );
 
@@ -49,8 +48,7 @@ public class StaffService {
     }
 
     public ResponseStaff getStaffByEmail(String email){
-        Optional<Staff> notNull = staffRepository.findByEmail(email);
-        Staff staff = notNull.orElseThrow(() ->
+        Staff staff = staffRepository.findByEmail(email).orElseThrow(() ->
                 StaffException.staffNotFoundByEmail(email)
         );
 
