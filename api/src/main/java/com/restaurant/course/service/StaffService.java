@@ -82,9 +82,8 @@ public class StaffService {
         staff.setLoginInfo(loginInfo);
 
         loginInfoRepository.save(loginInfo);
-        staffRepository.save(staff);
 
-        return new ResponseStaff(staff);
+        return new ResponseStaff(staffRepository.save(staff));
     }
 
     public ResponseStaff updateStaff(Integer id, SaveStaff saveStaff){
@@ -109,9 +108,8 @@ public class StaffService {
 
         loginInfo.setRole(role);
         loginInfoRepository.save(loginInfo);
-        staffRepository.save(staff);
 
-        return new ResponseStaff(staff);
+        return new ResponseStaff(staffRepository.save(staff));
     }
 
     @Transactional

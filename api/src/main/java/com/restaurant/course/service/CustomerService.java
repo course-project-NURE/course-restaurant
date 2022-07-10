@@ -78,9 +78,8 @@ public class CustomerService {
         customer.setLoginInfo(loginInfo);
 
         loginInfoRepository.save(loginInfo);
-        customerRepository.save(customer);
 
-        return new ResponseCustomer(customer);
+        return new ResponseCustomer(customerRepository.save(customer));
     }
 
     public ResponseCustomer updateCustomer(Integer id, SaveCustomer saveCustomer){
@@ -100,9 +99,8 @@ public class CustomerService {
 
 
         loginInfoRepository.save(loginInfo);
-        customerRepository.save(customer);
 
-        return new ResponseCustomer(customer);
+        return new ResponseCustomer(customerRepository.save(customer));
     }
 
     @Transactional
