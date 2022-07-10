@@ -1,5 +1,6 @@
 package com.restaurant.course.entity;
 
+import com.restaurant.course.entity.en.Category;
 import lombok.Getter;
 import lombok.Setter;
 

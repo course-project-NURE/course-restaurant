@@ -1,6 +1,6 @@
 package com.restaurant.course.dto;
 
-import com.restaurant.course.entity.Role;
+import com.restaurant.course.entity.en.Role;
 import com.restaurant.course.entity.Staff;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
