@@ -1,5 +1,6 @@
 package com.restaurant.course.entity;
 
+import com.restaurant.course.entity.en.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

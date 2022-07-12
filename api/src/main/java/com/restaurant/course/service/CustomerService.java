@@ -4,7 +4,7 @@ import com.restaurant.course.dto.ResponseCustomer;
 import com.restaurant.course.dto.SaveCustomer;
 import com.restaurant.course.entity.Customer;
 import com.restaurant.course.entity.LoginInfo;
-import com.restaurant.course.entity.Role;
+import com.restaurant.course.entity.en.Role;
 import com.restaurant.course.entity.RoleEntity;
 import com.restaurant.course.exception.CustomerException;
 import com.restaurant.course.exception.RoleException;
@@ -36,8 +36,7 @@ public class CustomerService {
     }
 
     public ResponseCustomer getCustomerById(Integer id){
-        Optional<Customer> notNull = customerRepository.findById(id);
-        Customer customer = notNull.orElseThrow(() ->
+        Customer customer = customerRepository.findById(id).orElseThrow(() ->
                 CustomerException.customerNotFoundById(id)
         );
 
@@ -79,9 +78,8 @@ public class CustomerService {
         customer.setLoginInfo(loginInfo);
 
         loginInfoRepository.save(loginInfo);
-        customerRepository.save(customer);
 
-        return new ResponseCustomer(customer);
+        return new ResponseCustomer(customerRepository.save(customer));
     }
 
     public ResponseCustomer updateCustomer(Integer id, SaveCustomer saveCustomer){
@@ -101,9 +99,8 @@ public class CustomerService {
 
 
         loginInfoRepository.save(loginInfo);
-        customerRepository.save(customer);
 
-        return new ResponseCustomer(customer);
+        return new ResponseCustomer(customerRepository.save(customer));
     }
 
     @Transactional

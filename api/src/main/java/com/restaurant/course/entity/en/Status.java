@@ -1,4 +1,4 @@
-package com.restaurant.course.entity;
+package com.restaurant.course.entity.en;
 
 public enum Status {
     PROCESSING,
