@@ -136,8 +136,8 @@ public class CustomerService {
         Address address = addressRepository.findAddress(saveAddress.getStreet(), saveAddress.getHouse(), saveAddress.getFlat());
         if(address == null){
             Address newAddress = saveAddress.toAddress();
-            CustomerHasAddress hasAddress = new CustomerHasAddress(customer, newAddress, saveAddress.getTitle());
             addressRepository.save(newAddress);
+            CustomerHasAddress hasAddress = new CustomerHasAddress(customer, newAddress, saveAddress.getTitle());
             return new ResponseAddress(customerHasAddressRepository.save(hasAddress));
         }
         else {
