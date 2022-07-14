@@ -27,11 +27,11 @@ public class Order {
     @Column(nullable = false, columnDefinition = "text")
     private String comment;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_user_id")
     private Customer customer;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_status")
     private OrderStatus orderStatus;
 

@@ -16,12 +16,12 @@ public class CustomerHasAddress {
     @EmbeddedId
     private CustomerHasAddressId customerHasAddressId;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = MenuItem.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Customer.class)
     @MapsId("customerId")
     @JoinColumn(name = "Customer_id")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Order.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Address.class)
     @MapsId("addressId")
     @JoinColumn(name = "Address_id")
     private Address address;
@@ -33,5 +33,7 @@ public class CustomerHasAddress {
         this.customer = customer;
         this.address = address;
         this.title = title;
+
+        CustomerHasAddressId customerHasAddressId1 = new CustomerHasAddressId(customer.getId(), address.getId());
     }
 }
