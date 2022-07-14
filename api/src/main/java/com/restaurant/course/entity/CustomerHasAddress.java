@@ -1,6 +1,7 @@
 package com.restaurant.course.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "customer_has_address")
+@NoArgsConstructor
 public class CustomerHasAddress {
 
     @EmbeddedId
@@ -26,4 +28,10 @@ public class CustomerHasAddress {
 
     @Column(nullable = false)
     private String title;
+
+    public CustomerHasAddress(Customer customer, Address address, String title) {
+        this.customer = customer;
+        this.address = address;
+        this.title = title;
+    }
 }
