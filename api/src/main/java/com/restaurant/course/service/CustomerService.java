@@ -1,16 +1,14 @@
 package com.restaurant.course.service;
 
+import com.restaurant.course.dto.ResponseAddress;
 import com.restaurant.course.dto.ResponseCustomer;
+import com.restaurant.course.dto.SaveAddress;
 import com.restaurant.course.dto.SaveCustomer;
-import com.restaurant.course.entity.Customer;
-import com.restaurant.course.entity.LoginInfo;
+import com.restaurant.course.entity.*;
 import com.restaurant.course.entity.en.Role;
-import com.restaurant.course.entity.RoleEntity;
 import com.restaurant.course.exception.CustomerException;
 import com.restaurant.course.exception.RoleException;
-import com.restaurant.course.repository.CustomerRepository;
-import com.restaurant.course.repository.LoginInfoRepository;
-import com.restaurant.course.repository.RoleRepository;
+import com.restaurant.course.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -25,14 +23,21 @@ public class CustomerService {
     private final RoleRepository roleRepository;
     private final LoginInfoRepository loginInfoRepository;
 
+    private final AddressRepository addressRepository;
+    private final CustomerHasAddressRepository customerHasAddressRepository;
+
     public CustomerService(
             CustomerRepository customerRepository,
             RoleRepository roleRepository,
-            LoginInfoRepository loginInfoRepository
+            LoginInfoRepository loginInfoRepository,
+            AddressRepository addressRepository,
+            CustomerHasAddressRepository customerHasAddressRepository
     ) {
         this.customerRepository = customerRepository;
         this.roleRepository = roleRepository;
         this.loginInfoRepository = loginInfoRepository;
+        this.addressRepository = addressRepository;
+        this.customerHasAddressRepository = customerHasAddressRepository;
     }
 
     public ResponseCustomer getCustomerById(Integer id){
@@ -121,6 +126,23 @@ public class CustomerService {
             loginInfoRepository.deleteByEmail(email);
         }else{
             throw CustomerException.customerNotFoundByEmail(email);
+        }
+    }
+    @Transactional
+    public ResponseAddress addNewAddress(String email, SaveAddress saveAddress){
+        Customer customer = customerRepository.findByEmail(email).orElseThrow(() ->
+                CustomerException.customerNotFoundByEmail(email)
+        );
+        Address address = addressRepository.findAddress(saveAddress.getStreet(), saveAddress.getHouse(), saveAddress.getFlat());
+        if(address == null){
+            Address newAddress = saveAddress.toAddress();
+            CustomerHasAddress hasAddress = new CustomerHasAddress(customer, newAddress, saveAddress.getTitle());
+            addressRepository.save(newAddress);
+            return new ResponseAddress(customerHasAddressRepository.save(hasAddress));
+        }
+        else {
+            CustomerHasAddress hasAddress = new CustomerHasAddress(customer, address, saveAddress.getTitle());
+            return new ResponseAddress(customerHasAddressRepository.save(hasAddress));
         }
     }
 }
