@@ -1,6 +1,8 @@
 package com.restaurant.course.controller;
 
+import com.restaurant.course.dto.ResponseAddress;
 import com.restaurant.course.dto.ResponseCustomer;
+import com.restaurant.course.dto.SaveAddress;
 import com.restaurant.course.dto.SaveCustomer;
 import com.restaurant.course.service.CustomerService;
 import org.springframework.http.HttpStatus;
@@ -62,5 +64,11 @@ public class CustomerController {
     public ResponseEntity<Void> deleteCustomerByEmail(@PathVariable String email){
         customerService.deleteCustomerByEmail(email);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/add-address/email/{email}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseAddress addNewAddress(@PathVariable String email, @RequestBody SaveAddress saveAddress){
+        return customerService.addNewAddress(email, saveAddress);
     }
 }
