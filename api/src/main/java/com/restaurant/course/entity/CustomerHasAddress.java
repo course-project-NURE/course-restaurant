@@ -34,6 +34,6 @@ public class CustomerHasAddress {
         this.address = address;
         this.title = title;
 
-        CustomerHasAddressId customerHasAddressId1 = new CustomerHasAddressId(customer.getId(), address.getId());
+        this.customerHasAddressId = new CustomerHasAddressId(customer.getId(), address.getId());
     }
 }
