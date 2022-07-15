@@ -2,6 +2,7 @@ package com.restaurant.course.controller;
 
 import com.restaurant.course.dto.ResponseStaff;
 import com.restaurant.course.dto.SaveStaff;
+import com.restaurant.course.entity.en.Role;
 import com.restaurant.course.service.StaffService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,7 +66,11 @@ public class StaffController {
         return ResponseEntity.noContent().build();
     }
 
-
+    @GetMapping("/role/{role}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public List<ResponseStaff> getStaffByRole(@PathVariable String role){
+        return staffService.getStaffByRole(Role.valueOf(role));
+    }
 
 
 }
