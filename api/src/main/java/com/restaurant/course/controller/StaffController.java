@@ -33,7 +33,7 @@ public class StaffController {
     @GetMapping("/email/{email}")
     @ResponseStatus(HttpStatus.FOUND)
     public ResponseStaff getStaffByEmail(@PathVariable String email){
-        if(EmailValidator.validate(email) == true){
+        if(EmailValidator.validate(email)){
             return staffService.getStaffByEmail(email);
         }
         else{
@@ -51,7 +51,7 @@ public class StaffController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseStaff saveStaff(@RequestBody SaveStaff staff){
-        if(EmailValidator.validate(staff.getEmail()) == true){
+        if(EmailValidator.validate(staff.getEmail())){
             return staffService.saveStaff(staff);        }
         else{
             throw EmailValidationException.invalidEmail(staff.getEmail());
@@ -61,13 +61,14 @@ public class StaffController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseStaff updateStaff(@PathVariable Integer id, @RequestBody SaveStaff staff){
-        if(EmailValidator.validate(staff.getEmail()) == true){
+        if(EmailValidator.validate(staff.getEmail())){
             return staffService.updateStaff(id, staff);       }
         else{
             throw EmailValidationException.invalidEmail(staff.getEmail());
         }
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> deleteStaffById(@PathVariable Integer id){
@@ -78,7 +79,7 @@ public class StaffController {
     @DeleteMapping("/email/{email}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> deleteStaffByEmail(@PathVariable String email){
-        if(EmailValidator.validate(email) == true){
+        if(EmailValidator.validate(email)){
             staffService.deleteStaffByEmail(email);
             return ResponseEntity.noContent().build();       }
         else{

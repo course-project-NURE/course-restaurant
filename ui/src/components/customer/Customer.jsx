@@ -42,7 +42,7 @@ function Customer(){
                     {
                         allCustomers.map(
                             customer =>
-                                <tr key={customers.id}>
+                                <tr key={customer.id}>
                                     <td>{customer.id}</td>
                                     <td>{customer.email}</td>
                                     <td>{customer.name}</td>

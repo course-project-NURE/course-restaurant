@@ -33,7 +33,7 @@ public class CustomerController {
     @GetMapping("/email/{email}")
     @ResponseStatus(HttpStatus.FOUND)
     public ResponseCustomer getCustomerByEmail(@PathVariable String email){
-        if(EmailValidator.validate(email) == true){
+        if(EmailValidator.validate(email)){
             return customerService.getCustomerByEmail(email);
         }
         else{
@@ -51,7 +51,7 @@ public class CustomerController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseCustomer saveCustomer(@RequestBody SaveCustomer saveCustomer){
-        if(EmailValidator.validate(saveCustomer.getEmail()) == true){
+        if(EmailValidator.validate(saveCustomer.getEmail())){
             return customerService.saveCustomer(saveCustomer);
         }
         else{
@@ -62,7 +62,7 @@ public class CustomerController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseCustomer updateCustomer(@PathVariable Integer id, @RequestBody SaveCustomer customer){
-        if(EmailValidator.validate(customer.getEmail()) == true){
+        if(EmailValidator.validate(customer.getEmail())){
             return customerService.updateCustomer(id, customer);
         }
         else{
@@ -80,7 +80,7 @@ public class CustomerController {
     @DeleteMapping("/email/{email}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> deleteCustomerByEmail(@PathVariable String email){
-        if(EmailValidator.validate(email) == true){
+        if(EmailValidator.validate(email)){
             customerService.deleteCustomerByEmail(email);
             return ResponseEntity.noContent().build();
         }

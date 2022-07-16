@@ -4,8 +4,8 @@ import {TextField} from "@material-ui/core";
 import Button from 'react-bootstrap/Button';
 import "./Staff.css"
 
-
-function Staff () {
+function Staff (){
+    const id = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
@@ -16,6 +16,7 @@ function Staff () {
     const [role, setRole] = useState('')
     const [allStaff, setAllStaff] = useState([])
     const staff = {
+        id,
         email,
         password,
         name,
@@ -41,6 +42,14 @@ function Staff () {
                 Test
             </div>
         )
+    }
+
+    const handleRemoveClick  = (e) => {
+        e.preventDefault()
+        console.log(staff.id)
+        StaffService.deleteStaffById(staff.id).then(() => {
+            console.log('Staff with an' + staff.id + "was deleted" )
+        })
     }
 
     useEffect(() => {
@@ -90,7 +99,7 @@ function Staff () {
                                     </td>
                                     <td>
                                         <button
-                                            onClick={handleEditClick}
+                                            onClick={handleRemoveClick}
                                             className="remove">
                                             Remove
                                         </button>
