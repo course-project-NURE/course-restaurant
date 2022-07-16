@@ -5,6 +5,7 @@ import com.restaurant.course.dto.SaveStaff;
 import com.restaurant.course.entity.LoginInfo;
 import com.restaurant.course.entity.RoleEntity;
 import com.restaurant.course.entity.Staff;
+import com.restaurant.course.entity.en.Role;
 import com.restaurant.course.exception.RoleException;
 import com.restaurant.course.exception.StaffException;
 import com.restaurant.course.repository.LoginInfoRepository;
@@ -131,5 +132,18 @@ public class StaffService {
         }else{
             throw StaffException.staffNotFoundByEmail(email);
         }
+    }
+
+    public List<ResponseStaff> getStaffByRole(Role role){
+        List<Staff> staff = staffRepository.findByRole(role);
+        if(staff.isEmpty()){
+            throw StaffException.NoOneStaffInDb();
+        }
+
+        List<ResponseStaff> responseStaff = new ArrayList<>();
+        for(Staff s: staff){
+            responseStaff.add(new ResponseStaff(s));
+        }
+        return responseStaff;
     }
 }
