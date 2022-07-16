@@ -1,6 +1,9 @@
 import {useEffect, useState} from 'react'
-import StaffService from '../service/StaffService'
-import {Button, TextField} from "@material-ui/core";
+import StaffService from '../../service/StaffService'
+import {TextField} from "@material-ui/core";
+import Button from 'react-bootstrap/Button';
+import "./Staff.css"
+
 
 function Staff () {
     const [email, setEmail] = useState('')
@@ -62,6 +65,7 @@ function Staff () {
                             <th>Salary</th>
                             <th>Role</th>
                             <th>Modify</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,7 +81,20 @@ function Staff () {
                                     <td>{staff.phone}</td>
                                     <td>{staff.salary}</td>
                                     <td>{staff.role}</td>
-                                    <td><button onClick={handleEditClick}>Edit</button></td>
+                                    <td>
+                                        <button
+                                            onClick={handleEditClick}
+                                            className="edit">
+                                        Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={handleEditClick}
+                                            className="remove">
+                                            Remove
+                                        </button>
+                                    </td>
                                 </tr>
                         )
                     }
@@ -118,7 +135,7 @@ function Staff () {
                                value={role}
                                onChange={(e)=>setRole(e.target.value)}
                     />
-                    <Button onClick={handleClick}>
+                    <Button onClick={handleClick}  variant="primary">
                         Submit
                     </Button>
                 </form>
