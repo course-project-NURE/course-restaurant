@@ -3,7 +3,9 @@ package com.restaurant.course.controller;
 import com.restaurant.course.dto.ResponseStaff;
 import com.restaurant.course.dto.SaveStaff;
 import com.restaurant.course.entity.en.Role;
+import com.restaurant.course.exception.EmailValidationException;
 import com.restaurant.course.service.StaffService;
+import com.restaurant.course.util.EmailValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +32,12 @@ public class StaffController {
     @GetMapping("/email/{email}")
     @ResponseStatus(HttpStatus.FOUND)
     public ResponseStaff getStaffByEmail(@PathVariable String email){
-        return staffService.getStaffByEmail(email);
+        if(EmailValidator.validate(email) == true){
+            return staffService.getStaffByEmail(email);
+        }
+        else{
+            throw EmailValidationException.invalidEmail(email);
+        }
     }
 
     @GetMapping
@@ -43,13 +50,21 @@ public class StaffController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseStaff saveStaff(@RequestBody SaveStaff staff){
-        return staffService.saveStaff(staff);
+        if(EmailValidator.validate(staff.getEmail()) == true){
+            return staffService.saveStaff(staff);        }
+        else{
+            throw EmailValidationException.invalidEmail(staff.getEmail());
+        }
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseStaff updateStaff(@PathVariable Integer id, @RequestBody SaveStaff staff){
-        return staffService.updateStaff(id, staff);
+        if(EmailValidator.validate(staff.getEmail()) == true){
+            return staffService.updateStaff(id, staff);       }
+        else{
+            throw EmailValidationException.invalidEmail(staff.getEmail());
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -62,8 +77,12 @@ public class StaffController {
     @DeleteMapping("/email/{email}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> deleteStaffByEmail(@PathVariable String email){
-        staffService.deleteStaffByEmail(email);
-        return ResponseEntity.noContent().build();
+        if(EmailValidator.validate(email) == true){
+            staffService.deleteStaffByEmail(email);
+            return ResponseEntity.noContent().build();       }
+        else{
+            throw EmailValidationException.invalidEmail(email);
+        }
     }
 
     @GetMapping("/role/{role}")
