@@ -1,0 +1,22 @@
+td button{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    border: black solid 1px;
+    border-radius: 2px;
+}
+
+table{
+}
+
+.edit{
+    background-color: #c2eeb8;
+    color: black;
+}
+
+.remove{
+    background-color: #eaa5a5;
+    color: black;
+}
