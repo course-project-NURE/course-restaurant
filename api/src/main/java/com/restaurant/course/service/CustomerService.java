@@ -59,13 +59,12 @@ public class CustomerService {
 
     public List<ResponseCustomer> getAllCustomers() throws ResponseStatusException {
         List<Customer> customers = customerRepository.findAll();
-        if(customers.isEmpty()){
-            throw CustomerException.NoOneCustomerInDb();
-        }
 
         List<ResponseCustomer> responseCustomers = new ArrayList<>();
-        for(Customer c: customers){
-            responseCustomers.add(new ResponseCustomer(c));
+        if(!customers.isEmpty()){
+            for(Customer c: customers){
+                responseCustomers.add(new ResponseCustomer(c));
+            }
         }
         return responseCustomers;
     }

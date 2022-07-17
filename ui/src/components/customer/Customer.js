@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import CustomerService from '../../service/CustomerService';
+import "./Customer.css"
 
-function Customer(){
+const Customer = () => {
     const email = useState('')
     const name = useState('')
     const surname = useState('')
@@ -24,9 +25,9 @@ function Customer(){
 
     return (
         <div className={'container'}>
-            <h1>All Customers</h1>
             <div className={'container'}>
-                <table className={'table'}>
+                <h4>Customer</h4>
+                <table className="table table-bordered border-dark">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -35,21 +36,19 @@ function Customer(){
                             <th>Surname</th>
                             <th>Lastname</th>
                             <th>Phone</th>
-                            <th>Modify</th>
                         </tr>
                     </thead>
                     <tbody>
                     {
                         allCustomers.map(
                             customer =>
-                                <tr key={customers.id}>
+                                <tr key={customer.id}>
                                     <td>{customer.id}</td>
                                     <td>{customer.email}</td>
                                     <td>{customer.name}</td>
                                     <td>{customer.surname}</td>
                                     <td>{customer.lastname}</td>
                                     <td>{customer.phone}</td>
-                                    <td>{customer.role}</td>
                                 </tr>
                         )
                     }
@@ -60,4 +59,4 @@ function Customer(){
     )
 }
 
-export default Customer
+export default Customer;

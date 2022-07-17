@@ -1,3 +1,4 @@
+
 class StaffService {
 
     retrieveAllStaff() {
@@ -17,6 +18,13 @@ class StaffService {
             method: 'POST',
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(staff)
+        })
+    }
+
+    deleteStaffById(id){
+        return fetch("http://localhost:8080/staff/" + id, {
+            method: 'DELETE',
+            headers:{"Content-Type":"application/json"}
         })
     }
 }

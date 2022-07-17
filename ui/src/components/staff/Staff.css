@@ -8,9 +8,6 @@ td button{
     border-radius: 2px;
 }
 
-table{
-}
-
 .edit{
     background-color: #c2eeb8;
     color: black;
@@ -20,3 +17,9 @@ table{
     background-color: #eaa5a5;
     color: black;
 }
+
+.save-input{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+

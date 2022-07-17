@@ -58,13 +58,12 @@ public class StaffService {
 
     public List<ResponseStaff> getAllStaff(){
         List<Staff> staff = staffRepository.findAll();
-        if(staff.isEmpty()){
-            throw StaffException.NoOneStaffInDb();
-        }
 
         List<ResponseStaff> responseStaff = new ArrayList<>();
-        for(Staff s: staff){
-            responseStaff.add(new ResponseStaff(s));
+        if(!staff.isEmpty()){
+            for(Staff s: staff){
+                responseStaff.add(new ResponseStaff(s));
+            }
         }
         return responseStaff;
     }
@@ -136,13 +135,12 @@ public class StaffService {
 
     public List<ResponseStaff> getStaffByRole(Role role){
         List<Staff> staff = staffRepository.findByRole(role);
-        if(staff.isEmpty()){
-            throw StaffException.NoOneStaffInDb();
-        }
 
         List<ResponseStaff> responseStaff = new ArrayList<>();
-        for(Staff s: staff){
-            responseStaff.add(new ResponseStaff(s));
+        if(!staff.isEmpty()){
+            for(Staff s: staff){
+                responseStaff.add(new ResponseStaff(s));
+            }
         }
         return responseStaff;
     }
