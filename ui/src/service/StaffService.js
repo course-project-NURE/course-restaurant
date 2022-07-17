@@ -1,4 +1,4 @@
-import axios from 'axios'
+
 class StaffService {
 
     retrieveAllStaff() {
@@ -23,7 +23,8 @@ class StaffService {
 
     deleteStaffById(id){
         return fetch("http://localhost:8080/staff/" + id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers:{"Content-Type":"application/json"}
         })
     }
 }
