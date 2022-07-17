@@ -17,6 +17,7 @@
     <properties>
         <java.version>11</java.version>
         <flyway.version>8.5.13</flyway.version>
+        <validator.version>1.7</validator.version>
     </properties>
 
     <dependencies>
@@ -58,6 +59,11 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
             <version>${flyway.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>${validator.version}</version>
         </dependency>
     </dependencies>
 
