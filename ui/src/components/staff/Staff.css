@@ -1,4 +1,4 @@
-td button{
+.list-button{
     display: inline-block;
     width: 100%;
     height: 100%;
@@ -23,3 +23,11 @@ td button{
     margin-bottom: 4px;
 }
 
+
+.float-end{
+    margin-bottom: 4px;
+}
+
+.list {
+    margin-top: 50px;
+}

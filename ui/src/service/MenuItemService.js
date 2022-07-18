@@ -1,34 +1,33 @@
+class MenuItemService {
 
-class StaffService {
+    basicUrl = "http://localhost:8080/menu-item";
 
-    basicUrl = "http://localhost:8080/staff";
-
-    retrieveAllStaff() {
+    retrieveAllMenuItems() {
         return fetch(this.basicUrl)
     }
 
-    retrieveStaffById(id) {
+    retrieveMenuItemById(id) {
         return fetch(this.basicUrl + '/' + id)
     }
 
-    deleteStaffById(id){
+    deleteMenuItemById(id){
         return fetch(this.basicUrl + '/' + id, {
             method: 'DELETE',
             headers:{"Content-Type":"application/json"}
         })
     }
 
-    saveStaff(staff){
-        const url = this.basicUrl + (staff.id ? '/' + staff.id : '')
+    saveMenuItem(menuItem){
+        const url = this.basicUrl + (menuItem.id ? '/' + menuItem.id : '')
         return fetch(url, {
-            method: (staff.id) ? 'PUT' : 'POST',
+            method: (menuItem.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(staff),
+            body: JSON.stringify(menuItem),
         })
     }
 }
 
-export default new StaffService()
+export default new MenuItemService()
