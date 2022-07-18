@@ -14,6 +14,7 @@ import java.util.Objects;
 public class ResponseStaff {
     private Integer id;
     private String email;
+    private String password;
     private String name;
     private String surname;
     private String lastname;
@@ -63,5 +64,6 @@ public class ResponseStaff {
         this.phone = staff.getPhone();
         this.salary = staff.getSalary();
         this.role = staff.getLoginInfo().getRole().getTitle();
+        this.password = staff.getLoginInfo().getPassword();
     }
 }

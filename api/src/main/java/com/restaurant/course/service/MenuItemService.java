@@ -38,26 +38,24 @@ public class MenuItemService {
 
     public List<ResponseMenuItem> getAllMenuItems(){
         List<MenuItem> menuItems = menuItemRepository.findAll();
-        if(menuItems.isEmpty()){
-            throw MenuItemException.NoOneMenuItemsInDb();
-        }
 
         List<ResponseMenuItem> response = new ArrayList<>();
-        for(MenuItem m: menuItems){
-            response.add(new ResponseMenuItem(m));
+        if(!menuItems.isEmpty()){
+            for(MenuItem m: menuItems){
+                response.add(new ResponseMenuItem(m));
+            }
         }
         return response;
     }
 
     public List<ResponseMenuItem> getAllMenuItemsByCategory(Category category){
         List<MenuItem> menuItems = menuItemRepository.findAllByCategory(category);
-        if(menuItems.isEmpty()){
-            throw MenuItemException.NoOneMenuItemsInDb();
-        }
 
         List<ResponseMenuItem> response = new ArrayList<>();
-        for(MenuItem m: menuItems){
-            response.add(new ResponseMenuItem(m));
+        if(!menuItems.isEmpty()){
+            for(MenuItem m: menuItems){
+                response.add(new ResponseMenuItem(m));
+            }
         }
         return response;
     }
