@@ -17,14 +17,17 @@ class CustomerList extends Component{
     }
     //?!
     sendPromoAction(email){
-        CustomerService.sendPromoToEmail(email).then(response =>{
-            console.log(response);
-            return response.json();
-        })
-            .then(data =>{
-                console.log(data)
-            })
-            .catch(e=>console.log(e));
+        CustomerService.sendPromoToEmail(email).then(
+            () => {
+                let updatedCustomers = [...this.state.customers].filter(i => {
+                    if(i.email === email){
+                        i.promoReceived = true;
+                    }
+                    return true;
+                })
+                this.setState({customers: updatedCustomers});
+            }
+        )
     }
     render() {
         const {customers} = this.state
@@ -36,10 +39,8 @@ class CustomerList extends Component{
         const customerList = customers.map(customer => {
             if(Number(customer.birthdate.slice(5,7))===nowMonth && Number(customer.birthdate.slice(8,10))===nowDate)
             {
-                customer.promoAvailable = true
                 if(!customer.promoReceived)
                 {
-                    customer.promoReceived = true
                     button = <Button onClick={() => this.sendPromoAction(customer.email)} className="bg-white text-primary">Send promo</Button>
                     birthdateStyle = "bg-primary text-white"
                 }

@@ -29,19 +29,20 @@ public class CustomerService {
     private final AddressRepository addressRepository;
     private final CustomerHasAddressRepository customerHasAddressRepository;
 
-//    private MailSender mailSender;
+    private final MailSender mailSender;
     public CustomerService(
             CustomerRepository customerRepository,
             RoleRepository roleRepository,
             LoginInfoRepository loginInfoRepository,
             AddressRepository addressRepository,
-            CustomerHasAddressRepository customerHasAddressRepository
-    ) {
+            CustomerHasAddressRepository customerHasAddressRepository,
+            MailSender mailSender) {
         this.customerRepository = customerRepository;
         this.roleRepository = roleRepository;
         this.loginInfoRepository = loginInfoRepository;
         this.addressRepository = addressRepository;
         this.customerHasAddressRepository = customerHasAddressRepository;
+        this.mailSender = mailSender;
     }
 
     public ResponseCustomer getCustomerById(Integer id){
@@ -118,7 +119,10 @@ public class CustomerService {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 90; // letter 'Z'
         Random random = new Random();
-        String name = getCustomerByEmail(email).getName();
+        Customer customer = customerRepository.findByEmail(email).orElseThrow(() ->
+                CustomerException.customerNotFoundByEmail(email)
+        );;
+        String name = customer.getName();
         String promo = random.ints(leftLimit, rightLimit + 1)
                 .filter(i -> (i <= 57 || i >= 65))
                 .limit(8)
@@ -128,9 +132,13 @@ public class CustomerService {
                 "Happy Birthday, " + name + "!\n" +
                 "As a gift from us, you receive this promo-code: " + promo
         );
-//        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-//        simpleMailMessage.getFrom()
-//        mailSender.send(email, "Birthday promo-code", message);
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setText(message);
+        mailSender.send(simpleMailMessage);
+        customer.setPromoReceived(true);
+        customer.setPromoAvailable(false);
+        customerRepository.save(customer);
     }
     @Transactional
     public void deleteCustomerById(Integer id){

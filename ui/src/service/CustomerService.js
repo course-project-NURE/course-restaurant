@@ -5,7 +5,7 @@ class CustomerService {
         return fetch(this.basicUrl)
     }
     sendPromoToEmail(email){
-        return fetch(this.basicUrl+'/sendpromo/'+email)
+        return fetch(this.basicUrl+'/sendpromo/'+email);
     }
 }
 

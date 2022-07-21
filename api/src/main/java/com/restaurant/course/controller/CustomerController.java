@@ -96,7 +96,7 @@ public class CustomerController {
 
     }
 
-    @PostMapping("/sendpromo/{email}")
+    @GetMapping ("/sendpromo/{email}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> sendPromo(@PathVariable String email){
         customerService.sendPromoToEmail(email);
