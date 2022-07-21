@@ -78,9 +78,9 @@ class MenuItemEdit extends Component{
                             <option value={'SUSHI'}>Sushi</option>
                             <option value={'NONALCOHOLIC'}>Nonalcoholic</option>
                             <option value={'ALCOHOLIC'}>Alcoholic</option>
-                            <option value={'WOK'}>Courier</option>
-                            <option value={'DESSERT'}>Alcoholic</option>
-                            <option value={'SOUP'}>Courier</option>
+                            <option value={'WOK'}>Wok</option>
+                            <option value={'DESSERT'}>Dessert</option>
+                            <option value={'SOUP'}>Soup</option>
                         </Input>
                     </FormGroup>
                     <FormGroup>

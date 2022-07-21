@@ -1,4 +1,4 @@
-package com.restaurant.course.controller;
+package com.restaurant.course.exception.controller;
 
 import com.restaurant.course.dto.*;
 import com.restaurant.course.entity.en.Category;

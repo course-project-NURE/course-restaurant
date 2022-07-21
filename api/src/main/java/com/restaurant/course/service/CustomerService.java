@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class CustomerService {
@@ -26,6 +27,7 @@ public class CustomerService {
     private final AddressRepository addressRepository;
     private final CustomerHasAddressRepository customerHasAddressRepository;
 
+    private MailSender mailSender;
     public CustomerService(
             CustomerRepository customerRepository,
             RoleRepository roleRepository,
@@ -96,6 +98,9 @@ public class CustomerService {
         customer.setSurname(saveCustomer.getSurname());
         customer.setLastname(saveCustomer.getLastname());
         customer.setPhone(saveCustomer.getPhone());
+        customer.setBirthdate(saveCustomer.getBirthdate());
+        customer.setPromoReceived(saveCustomer.getPromoReceived());
+        customer.setPromoAvailable(saveCustomer.getPromoAvailable());
 
         LoginInfo loginInfo = customer.getLoginInfo();
         loginInfo.setEmail(saveCustomer.getEmail());
@@ -107,6 +112,22 @@ public class CustomerService {
         return new ResponseCustomer(customerRepository.save(customer));
     }
 
+    public void sendPromoToEmail(String email){
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 90; // letter 'Z'
+        Random random = new Random();
+        String name = getCustomerByEmail(email).getName();
+        String promo = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65))
+                .limit(8)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+        String message = String.format(
+                "Happy Birthday, " + name + "!\n" +
+                "As a gift from us, you receive this promo-code: " + promo
+        );
+        mailSender.send(email, "Birthday promo-code", message);
+    }
     @Transactional
     public void deleteCustomerById(Integer id){
         Optional<Customer> staff = customerRepository.findById(id);

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Getter
@@ -19,7 +20,9 @@ public class ResponseCustomer {
     private String lastname;
     private String phone;
     private Role role;
-
+    private LocalDate birthdate;
+    private Boolean promoReceived;
+    private Boolean promoAvailable;
     public ResponseCustomer(Customer customer){this.setFromCustomer(customer);}
 
     @Override
@@ -33,7 +36,10 @@ public class ResponseCustomer {
                 getSurname().equals(that.getSurname()) &&
                 getLastname().equals(that.getLastname()) &&
                 getPhone().equals(that.getPhone()) &&
-                getRole() == that.getRole();
+                getRole() == that.getRole() &&
+                getBirthdate().equals(that.getBirthdate()) &&
+                getPromoReceived().equals(that.getPromoReceived()) &&
+                getPromoAvailable().equals(that.getPromoAvailable());
     }
 
     @Override
@@ -45,7 +51,10 @@ public class ResponseCustomer {
                 getSurname(),
                 getLastname(),
                 getPhone(),
-                getRole());
+                getRole(),
+                getBirthdate(),
+                getPromoReceived(),
+                getPromoAvailable());
     }
 
     public void setFromCustomer(Customer customer){
@@ -56,5 +65,8 @@ public class ResponseCustomer {
         this.lastname = customer.getLastname();
         this.phone = customer.getPhone();
         this.role = customer.getLoginInfo().getRole().getTitle();
+        this.birthdate = customer.getBirthdate();
+        this.promoReceived = customer.getPromoReceived();
+        this.promoAvailable = customer.getPromoAvailable();
     }
 }

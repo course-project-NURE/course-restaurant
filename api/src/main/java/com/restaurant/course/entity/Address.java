@@ -19,7 +19,7 @@ public class Address {
     @Column(nullable = false, columnDefinition = "text")
     private String street;
 
-    @Column(nullable = false, name = "hous_n")
+    @Column(nullable = false, name = "house_n")
     private Integer house;
 
     @Column(nullable = false)

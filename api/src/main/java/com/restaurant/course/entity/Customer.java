@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +30,15 @@ public class Customer {
 
     @Column(nullable = false)
     private String phone;
+
+    @Column(nullable = false)
+    private LocalDate birthdate;
+
+    @Column(nullable = false)
+    private Boolean promoReceived;
+
+    @Column(nullable = false)
+    private Boolean promoAvailable;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_login_info")

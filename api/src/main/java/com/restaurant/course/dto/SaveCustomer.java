@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Getter
@@ -17,6 +18,9 @@ public class SaveCustomer {
     private String surname;
     private String lastname;
     private String phone;
+    private LocalDate birthdate;
+    private Boolean promoReceived;
+    private Boolean promoAvailable;
 
     @Override
     public boolean equals(Object o) {
@@ -28,7 +32,10 @@ public class SaveCustomer {
                 getName().equals(that.getName()) &&
                 getSurname().equals(that.getSurname()) &&
                 getLastname().equals(that.getLastname()) &&
-                getPhone().equals(that.getPhone());
+                getPhone().equals(that.getPhone()) &&
+                getBirthdate().equals(that.getBirthdate()) &&
+                getPromoReceived().equals(that.getPromoReceived()) &&
+                getPromoAvailable().equals(that.getPromoAvailable());
     }
 
     @Override
@@ -39,7 +46,10 @@ public class SaveCustomer {
                 getName(),
                 getSurname(),
                 getLastname(),
-                getPhone());
+                getPhone(),
+                getBirthdate(),
+                getPromoReceived(),
+                getPromoAvailable());
     }
 
     public Customer toCustomer(){
@@ -49,7 +59,9 @@ public class SaveCustomer {
         customer.setSurname(this.surname);
         customer.setLastname(this.lastname);
         customer.setPhone(this.phone);
-
+        customer.setBirthdate(this.birthdate);
+        customer.setPromoReceived(this.promoReceived);
+        customer.setPromoAvailable(this.promoAvailable);
         return customer;
     }
 }

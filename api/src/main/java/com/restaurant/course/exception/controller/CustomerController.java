@@ -1,4 +1,4 @@
-package com.restaurant.course.controller;
+package com.restaurant.course.exception.controller;
 
 import com.restaurant.course.dto.ResponseAddress;
 import com.restaurant.course.dto.ResponseCustomer;
@@ -95,4 +95,12 @@ public class CustomerController {
         return customerService.addNewAddress(email, saveAddress);
 
     }
+
+    @PostMapping("/sendpromo/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Void> sendPromo(@PathVariable String email){
+        customerService.sendPromoToEmail(email);
+        return ResponseEntity.noContent().build();
+    }
+
 }

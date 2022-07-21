@@ -24,7 +24,7 @@ public class MenuItem {
     @Column(nullable = false)
     private Float price;
 
-    @Column(nullable = false, columnDefinition = "text", name = "discription")
+    @Column(nullable = false, columnDefinition = "text", name = "description")
     private String description;
     @ManyToOne
     @JoinColumn(name = "fk_category")
