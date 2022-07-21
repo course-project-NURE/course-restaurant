@@ -19,7 +19,7 @@ USE `course_restaurant` ;
 CREATE TABLE IF NOT EXISTS `course_restaurant`.`address` (
   `id_address` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `street` TEXT NOT NULL,
-  `house_n` INT UNSIGNED NOT NULL,
+  `hous_n` INT UNSIGNED NOT NULL,
   `flat` VARCHAR(6) NOT NULL,
   PRIMARY KEY (`id_address`))
 ENGINE = InnoDB
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `course_restaurant`.`menu_item` (
   `id_menu_item` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
   `price` FLOAT(6,2) UNSIGNED NOT NULL,
-  `description` TEXT NOT NULL,
+  `discription` TEXT NOT NULL,
   `fk_category` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id_menu_item`),
   INDEX `fk_Dish_Catalog1_idx` (`fk_category` ASC) VISIBLE,
@@ -117,7 +117,6 @@ CREATE TABLE IF NOT EXISTS `course_restaurant`.`customer` (
   `name` VARCHAR(45) NOT NULL,
   `lastname` TEXT NOT NULL,
   `phone` VARCHAR(20) NOT NULL,
-  `birthdate` DATE NOT NULL,
   PRIMARY KEY (`id_customer`),
   INDEX `fk_Customer_Login_info1_idx` (`fk_login_info` ASC) VISIBLE,
   CONSTRAINT `fk_Customer_Login_info1`

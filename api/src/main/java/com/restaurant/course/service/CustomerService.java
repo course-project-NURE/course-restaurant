@@ -9,6 +9,8 @@ import com.restaurant.course.entity.en.Role;
 import com.restaurant.course.exception.CustomerException;
 import com.restaurant.course.exception.RoleException;
 import com.restaurant.course.repository.*;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -27,7 +29,7 @@ public class CustomerService {
     private final AddressRepository addressRepository;
     private final CustomerHasAddressRepository customerHasAddressRepository;
 
-    private MailSender mailSender;
+//    private MailSender mailSender;
     public CustomerService(
             CustomerRepository customerRepository,
             RoleRepository roleRepository,
@@ -126,7 +128,9 @@ public class CustomerService {
                 "Happy Birthday, " + name + "!\n" +
                 "As a gift from us, you receive this promo-code: " + promo
         );
-        mailSender.send(email, "Birthday promo-code", message);
+//        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+//        simpleMailMessage.getFrom()
+//        mailSender.send(email, "Birthday promo-code", message);
     }
     @Transactional
     public void deleteCustomerById(Integer id){

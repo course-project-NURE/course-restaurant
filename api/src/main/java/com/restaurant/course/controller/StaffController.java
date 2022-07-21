@@ -1,4 +1,4 @@
-package com.restaurant.course.exception.controller;
+package com.restaurant.course.controller;
 
 import com.restaurant.course.dto.ResponseStaff;
 import com.restaurant.course.dto.SaveStaff;

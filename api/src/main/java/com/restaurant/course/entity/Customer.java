@@ -34,10 +34,10 @@ public class Customer {
     @Column(nullable = false)
     private LocalDate birthdate;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TINYINT")
     private Boolean promoReceived;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TINYINT")
     private Boolean promoAvailable;
 
     @ManyToOne(fetch = FetchType.LAZY)

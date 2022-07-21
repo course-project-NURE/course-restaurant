@@ -1,4 +1,4 @@
-package com.restaurant.course.exception.controller.handler;
+package com.restaurant.course.controller.handler;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
