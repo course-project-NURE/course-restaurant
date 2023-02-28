@@ -29,18 +29,25 @@ class CustomerList extends Component{
             }
         )
     }
-    render() {
-        const {customers} = this.state
+    matchBirthday(customer){
         let now = new Date()
         let nowMonth = now.getMonth() + 1
         let nowDate = now.getDate()
+        return(Number(customer.birthdate.slice(5,7))===nowMonth && Number(customer.birthdate.slice(8,10))===nowDate);
+    }
+    render() {
+        const {customers} = this.state
         let button = ''
-        let birthdateStyle = "bg-white text-dark"
+        let birthdateStyle = ""
         const customerList = customers.map(customer => {
-            if(Number(customer.birthdate.slice(5,7))===nowMonth && Number(customer.birthdate.slice(8,10))===nowDate)
+            button = ''
+            birthdateStyle = "bg-white text-dark"
+            if(this.matchBirthday(customer))
             {
+                customer.promoAvailable = true
                 if(!customer.promoReceived)
                 {
+                    customer.promoReceived = true
                     button = <Button onClick={() => this.sendPromoAction(customer.email)} className="bg-white text-primary">Send promo</Button>
                     birthdateStyle = "bg-primary text-white"
                 }
